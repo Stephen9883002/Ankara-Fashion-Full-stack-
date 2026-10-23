@@ -351,9 +351,7 @@ app.post('/register', registerLimiter, async (req, res) => {
 		}
 
 		if (!EMAIL_PATTERN.test(email)) {
-			return res
-				.status(400)
-				.json({ error: 'Please enter a valid email address' });
+			return res.status(400).json({ error: 'Please enter a valid email addy' });
 		}
 
 		const passwordError = validatePasswordRules(password);
