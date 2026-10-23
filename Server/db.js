@@ -32,7 +32,8 @@ const initializeDatabase = async () => {
 				status_text VARCHAR(100),
 				status_class VARCHAR(100),
 				section VARCHAR(100),
-				category VARCHAR(100)
+				category VARCHAR(100),
+        stock INT DEFAULT 10 
 			);
 		`);
 

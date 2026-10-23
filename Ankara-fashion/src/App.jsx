@@ -322,15 +322,7 @@ function App() {
 				<Route path="users" element={<AdminUsersPage />} />
 				<Route path="orders/:id" element={<AdminOrderDetailPage />} />
 				<Route path="analytics" element={<AdminAnalyticsPage />} />
-				{/* <Route
-					path="settings"
-					element={
-						<AdminPlaceholder
-							title="Settings"
-							text="Your account settings will appear here."
-						/>
-					}
-				/> */}
+
 				<Route path="settings" element={<AdminSettingsPage />} />
 				<Route path="*" element={<Navigate to="/admin" replace />} />
 			</Route>
