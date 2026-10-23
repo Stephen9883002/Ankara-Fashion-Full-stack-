@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { API_URL } from '../config'; // Double-check the relative path to config.js
+import { API_URL } from '../../config'; // Double-check the relative path to config.js
 
 function MyOrdersModal(props) {
 	const [orders, setOrders] = useState([]);

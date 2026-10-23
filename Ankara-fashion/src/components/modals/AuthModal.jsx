@@ -5,7 +5,7 @@ import {
 	MIN_PASSWORD_LENGTH,
 	getPasswordStrength,
 } from '../../utills/passwordStrength';
-import { API_URL } from '../config'; // Use correct relative path to config.js
+import { API_URL } from '../../config'; // Use correct relative path to config.js
 
 function AuthModal(props) {
 	const [signupName, setSignupName] = useState('');

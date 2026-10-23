@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import OrderInvoice from './OrderInvoice';
-import { API_URL } from '../config'; // Double-check the relative path to config.js
+import { API_URL } from '../../config'; // Double-check the relative path to config.js
 
 function AccountOrders(props) {
 	const [orders, setOrders] = useState([]);
