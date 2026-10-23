@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import OrderInvoice from './OrderInvoice';
+import { API_URL } from '../config'; // Double-check the relative path to config.js
 
 function AccountOrders(props) {
 	const [orders, setOrders] = useState([]);
@@ -15,7 +16,7 @@ function AccountOrders(props) {
 			setIsLoading(true);
 
 			try {
-				const response = await fetch('http://localhost:3000/my-orders', {
+				const response = await fetch(`${API_URL}/my-orders`, {
 					headers: { Authorization: `Bearer ${props.authToken}` },
 				});
 

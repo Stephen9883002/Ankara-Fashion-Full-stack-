@@ -28,7 +28,7 @@ async function main() {
 		.update(body)
 		.digest('hex');
 
-	const response = await fetch('http://localhost:3000/paystack-webhook', {
+	const response = await fetch(`${API_URL}/paystack-webhook`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',

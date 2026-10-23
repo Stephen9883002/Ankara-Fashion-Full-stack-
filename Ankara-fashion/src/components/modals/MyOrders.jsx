@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { API_URL } from '../config'; // Double-check the relative path to config.js
 
 function MyOrdersModal(props) {
 	const [orders, setOrders] = useState([]);
@@ -11,7 +12,7 @@ function MyOrdersModal(props) {
 			setLoadError('');
 
 			try {
-				const response = await fetch('http://localhost:3000/my-orders', {
+				const response = await fetch(`${API_URL}/my-orders`, {
 					headers: { Authorization: `Bearer ${props.authToken}` },
 				});
 

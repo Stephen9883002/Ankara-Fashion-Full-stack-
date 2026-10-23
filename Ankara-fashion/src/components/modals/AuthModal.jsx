@@ -5,6 +5,7 @@ import {
 	MIN_PASSWORD_LENGTH,
 	getPasswordStrength,
 } from '../../utills/passwordStrength';
+import { API_URL } from '../config'; // Use correct relative path to config.js
 
 function AuthModal(props) {
 	const [signupName, setSignupName] = useState('');
@@ -76,7 +77,7 @@ function AuthModal(props) {
 		setIsSubmitting(true);
 
 		try {
-			const response = await fetch('http://localhost:3000/register', {
+			const response = await fetch(`${API_URL}/register`, {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({ fullName, email, password: signupPassword }),
@@ -119,7 +120,7 @@ function AuthModal(props) {
 		setIsSubmitting(true);
 
 		try {
-			const response = await fetch('http://localhost:3000/login', {
+			const response = await fetch(`${API_URL}/login`, {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({ email, password: loginPassword, rememberMe }),

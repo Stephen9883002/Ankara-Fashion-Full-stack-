@@ -32,6 +32,8 @@ import AdminOrderDetailPage from './Admin/AdminOrderDetailsPage.jsx';
 import AdminUsersPage from './Admin/AdminUsersPage.jsx';
 import AdminAnalyticsPage from './Admin/AdminAnalyticsPage.jsx';
 import AdminSettingsPage from './Admin/AdminSettingsPage.jsx';
+import { API_URL } from './config';
+
 function readSavedSession(key) {
 	return localStorage.getItem(key) || sessionStorage.getItem(key);
 }
@@ -190,7 +192,7 @@ function App() {
 	useEffect(() => {
 		async function loadProducts() {
 			try {
-				const response = await fetch('http://localhost:3000/products');
+				const response = await fetch(`${API_URL}/products`);
 				if (!response.ok) throw new Error('Server error: ' + response.status);
 				const data = await response.json();
 				console.log(data);
