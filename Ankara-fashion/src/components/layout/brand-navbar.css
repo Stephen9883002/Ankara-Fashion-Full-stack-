@@ -444,3 +444,160 @@
 .cart-backdrop {
 	z-index: 999999 !important; /* Sits right between the navbar and the active cart drawer */
 }
+
+/* Base Layout Structure Blocks */
+.ankara-main-nav-row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	gap: 1rem;
+}
+
+.mobile-search-only {
+	display: none;
+}
+
+.ankara-mobile-cart-shortcut-trigger {
+	display: none;
+	background: none;
+	border: none;
+	color: white;
+	position: relative;
+	cursor: pointer;
+}
+
+/* --- Responsive Media Adjustments for Small Device Viewports --- */
+@media (max-width: 768px) {
+	/* Hide full interactive clusters to avoid crowding desktop frames */
+	.desktop-search-only,
+	.desktop-actions-only {
+		display: none !important;
+	}
+
+	/* Show mobile search and dynamic layout shortcut tools */
+	.mobile-search-only {
+		display: flex !important;
+		width: 100%;
+		margin-top: 0.75rem;
+	}
+
+	.ankara-mobile-cart-shortcut-trigger {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.ankara-mobile-cart-shortcut-trigger .material-icons-sharp {
+		font-size: 1.65rem;
+	}
+
+	/* Keep numerical badge nested cleanly over top corner of mobile cart */
+	.ankara-mobile-cart-shortcut-trigger .ankara-cart-numeric-badge {
+		position: absolute;
+		top: -6px;
+		right: -8px;
+		font-size: 0.65rem;
+		padding: 0.1rem 0.35rem;
+		min-width: 16px;
+	}
+}
+/* 🌟 Main Global Navbar Container */
+.ankara-nav-container {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0.5rem 1rem;
+}
+
+/* Row wrapper separating the main actions from the search bar */
+.ankara-main-nav-row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+}
+
+/* --- Mobile Specific Overrides (Screen width under 768px) --- */
+@media (max-width: 768px) {
+	/* Hide desktop elements completely */
+	.desktop-search-only,
+	.desktop-actions-only {
+		display: none !important;
+	}
+
+	/* 📱 1. Fix the top action bar row elements spacing */
+	.ankara-main-nav-row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		width: 100%;
+		padding-bottom: 0.5rem;
+	}
+
+	/* Fix logo width so it stays contained */
+	.ankara-logo-frame img {
+		height: 35px;
+		width: auto;
+		object-fit: contain;
+	}
+
+	/* 🔍 2. Force mobile search bar to a clean second row underneath */
+	.mobile-search-only {
+		display: flex !important;
+		width: 100% !important;
+		margin: 0.25rem 0 0.5rem 0 !important;
+		position: relative;
+	}
+
+	.mobile-search-only .ankara-search-input {
+		width: 100%;
+		padding: 0.6rem 2.5rem 0.6rem 1rem;
+		border-radius: 8px;
+		border: 1px solid rgba(255, 255, 255, 0.2);
+		background-color: rgba(255, 255, 255, 0.05);
+		color: #ffffff;
+		font-size: 0.9rem;
+	}
+
+	.mobile-search-only .ankara-search-action-btn {
+		position: absolute;
+		right: 5px;
+		top: 50%;
+		transform: translateY(-50%);
+		background: none;
+		border: none;
+		color: #ffffff;
+		cursor: pointer;
+	}
+
+	/* 🛒 3. Clean up mobile cart icon position */
+	.ankara-mobile-cart-shortcut-trigger {
+		display: flex !important;
+		background: none;
+		border: none;
+		color: white;
+		position: relative;
+		cursor: pointer;
+		padding: 5px;
+	}
+
+	.ankara-mobile-cart-shortcut-trigger .material-icons-sharp {
+		font-size: 1.5rem;
+	}
+
+	.ankara-mobile-cart-shortcut-trigger .ankara-cart-numeric-badge {
+		position: absolute;
+		top: -4px;
+		right: -6px;
+		font-size: 0.65rem;
+		background-color: #c98a3d;
+		color: white;
+		padding: 2px 5px;
+		border-radius: 50px;
+		min-width: 15px;
+		text-align: center;
+	}
+}

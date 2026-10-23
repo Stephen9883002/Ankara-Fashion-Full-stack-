@@ -31,42 +31,134 @@ function Navbar(props) {
 	return (
 		<header className="ankara-brand-header">
 			<div className="ankara-nav-container">
-				{/* Hamburger Toggle Action Button (Visible only on mobile/tablets) */}
-				<button
-					className="ankara-mobile-hamburger-trigger"
-					type="button"
-					aria-label="Open menu"
-					onClick={(e) => {
-						e.stopPropagation();
-						setIsMenuOpen(true);
-					}}
-				>
-					<span className="material-icons-sharp">menu</span>
-				</button>
+				{/* Top Row Header Layout Frame */}
+				<div className="ankara-main-nav-row">
+					{/* Hamburger Toggle Action Button */}
+					<button
+						className="ankara-mobile-hamburger-trigger"
+						type="button"
+						aria-label="Open menu"
+						onClick={(e) => {
+							e.stopPropagation();
+							setIsMenuOpen(true);
+						}}
+					>
+						<span className="material-icons-sharp">menu</span>
+					</button>
 
-				{/* Brand Image Identity Frame */}
-				<div className="ankara-logo-frame">
-					<a href="#hero">
-						<img src="public/img/ANK-LOGO.PNG" alt="Ankara Fashion Logo" />
-					</a>
+					{/* Brand Image Identity Frame */}
+					<div className="ankara-logo-frame">
+						<a href="#hero">
+							<img src="/img/ANK-LOGO.PNG" alt="Ankara Fashion Logo" />
+						</a>
+					</div>
+
+					{/* Center Row Content: Desktop Text Links */}
+					<nav
+						className="ankara-desktop-nav-links"
+						aria-label="Main navigation"
+					>
+						<a href="#new">New</a>
+						<a href="#categories">Categories</a>
+						<a href="#best-sellers">Best Sellers</a>
+						<a href="#about">About</a>
+						<a href="#contact">Contact</a>
+					</nav>
+
+					{/* Desktop Search Integration */}
+					<div className="ankara-search-wrapper desktop-search-only">
+						<input
+							type="text"
+							className="ankara-search-input"
+							placeholder="Search for unique fabrics..."
+							aria-label="Search products"
+							value={inputValue}
+							onChange={(e) => setInputValue(e.target.value)}
+							onKeyDown={(e) => {
+								if (e.key === 'Enter') props.onSearch(inputValue);
+							}}
+						/>
+						<button
+							className="ankara-search-action-btn"
+							type="button"
+							aria-label="Execute Search"
+							onClick={() => props.onSearch(inputValue)}
+						>
+							<span className="material-icons-sharp">search</span>
+						</button>
+					</div>
+
+					{/* Right Side Control Interface Cluster (Hidden automatically on Mobile) */}
+					<div className="ankara-action-cluster desktop-actions-only">
+						{props.currentUser && (
+							<span className="ankara-account-greeting-span">
+								Hi, {props.currentUser.fullName?.split(' ')[0] || 'there'}
+							</span>
+						)}
+
+						{props.currentUser ? (
+							<button
+								className="ankara-account-profile-btn"
+								type="button"
+								onClick={() => navigate('/account')}
+							>
+								<span className="material-icons-sharp">person</span>
+								user
+							</button>
+						) : (
+							<div
+								style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}
+							>
+								<button
+									className="ankara-account-profile-btn"
+									style={{ backgroundColor: '#2c323d' }}
+									type="button"
+									onClick={props.onOpenTrackOrder}
+								>
+									<span className="material-icons-sharp">local_shipping</span>
+									Track
+								</button>
+								<button
+									className="ankara-account-profile-btn"
+									type="button"
+									onClick={() => props.onSetAuthView('signup')}
+								>
+									<span className="material-icons-sharp">person_add</span>
+									Join
+								</button>
+							</div>
+						)}
+
+						<button
+							className="ankara-premium-cart-btn"
+							type="button"
+							aria-label="Open Shopping Bag"
+							onClick={props.onToggleCart}
+						>
+							<span className="material-icons-sharp">shopping_cart</span>
+							<span className="cart-btn-label">Cart</span>
+							<span className="ankara-cart-numeric-badge">{cartCount}</span>
+						</button>
+					</div>
+
+					{/* Dedicated Simple Mobile Cart Trigger Icon to keep things tidy */}
+					<button
+						className="ankara-mobile-cart-shortcut-trigger"
+						type="button"
+						aria-label="Open Cart"
+						onClick={props.onToggleCart}
+					>
+						<span className="material-icons-sharp">shopping_cart</span>
+						<span className="ankara-cart-numeric-badge">{cartCount}</span>
+					</button>
 				</div>
 
-				{/* Center Row Content: Desktop Text Links */}
-				<nav className="ankara-desktop-nav-links" aria-label="Main navigation">
-					<a href="#new">New</a>
-					<a href="#categories">Categories</a>
-					<a href="#best-sellers">Best Sellers</a>
-					<a href="#about">About</a>
-					<a href="#contact">Contact</a>
-				</nav>
-
-				{/* Modular Search Integration */}
-				<div className="ankara-search-wrapper">
+				{/* Modular Mobile Input Search Row (Visible only on mobile screen layouts) */}
+				<div className="ankara-search-wrapper mobile-search-only">
 					<input
 						type="text"
 						className="ankara-search-input"
-						placeholder="Search for unique fabrics..."
-						aria-label="Search products"
+						placeholder="Search unique fabrics..."
 						value={inputValue}
 						onChange={(e) => setInputValue(e.target.value)}
 						onKeyDown={(e) => {
@@ -76,67 +168,9 @@ function Navbar(props) {
 					<button
 						className="ankara-search-action-btn"
 						type="button"
-						aria-label="Execute Search"
 						onClick={() => props.onSearch(inputValue)}
 					>
 						<span className="material-icons-sharp">search</span>
-					</button>
-				</div>
-
-				{/* Right Side Control Interface Cluster */}
-				{/* Right Side Control Interface Cluster */}
-				<div className="ankara-action-cluster">
-					{/* Interactive Greeting Tag */}
-					{props.currentUser && (
-						<span className="ankara-account-greeting-span">
-							Hi, {props.currentUser.fullName?.split(' ')[0] || 'there'}
-						</span>
-					)}
-
-					{/* Profile / Actions Buttons */}
-					{props.currentUser ? (
-						<button
-							className="ankara-account-profile-btn"
-							type="button"
-							onClick={() => navigate('/account')}
-						>
-							<span className="material-icons-sharp">person</span>
-							user
-						</button>
-					) : (
-						<div
-							style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}
-						>
-							<button
-								className="ankara-account-profile-btn"
-								style={{ backgroundColor: '#2c323d' }}
-								type="button"
-								onClick={props.onOpenTrackOrder}
-							>
-								<span className="material-icons-sharp">local_shipping</span>
-								Track
-							</button>
-							<button
-								className="ankara-account-profile-btn"
-								type="button"
-								onClick={() => props.onSetAuthView('signup')}
-							>
-								<span className="material-icons-sharp">person_add</span>
-								Join
-							</button>
-						</div>
-					)}
-
-					{/* FIXED PREMIUM CART ACTION BUTTON */}
-					<button
-						className="ankara-premium-cart-btn"
-						type="button"
-						aria-label="Open Shopping Bag"
-						onClick={props.onToggleCart}
-					>
-						<span className="material-icons-sharp">shopping_cart</span>
-						<span className="cart-btn-label">Cart</span>
-						<span className="ankara-cart-numeric-badge">{cartCount}</span>
 					</button>
 				</div>
 
@@ -166,7 +200,7 @@ function Navbar(props) {
 							Categories
 						</a>
 						<a href="#best-sellers" onClick={() => setIsMenuOpen(false)}>
-							Best
+							Best Sellers
 						</a>
 						<a href="#about" onClick={() => setIsMenuOpen(false)}>
 							About Us
