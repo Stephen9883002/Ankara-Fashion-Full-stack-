@@ -36,11 +36,6 @@ app.use(
 app.get('/', (req, res) => {
 	res.send('Server is alive!');
 });
-// const startedAt = new Date().toLocaleTimeString();
-
-// app.get('/', (req, res) => {
-// 	res.send('Server is alive! Started at ' + startedAt);
-// });
 
 const MIN_PASSWORD_LENGTH = 6;
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
