@@ -1,0 +1,158 @@
+/* ==========================================================================
+   Premium Brand Hero UI System
+   ========================================================================== */
+
+/* --- Core Desktop Architecture --- */
+.ankara-premium-hero-showcase {
+	position: relative;
+	min-height: 130vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background:
+		linear-gradient(rgba(17, 15, 14, 0.45), rgba(17, 15, 14, 0.6)),
+		url('/image/lego1.PNG') center/cover no-repeat;
+	text-align: center;
+	padding: 2rem;
+	overflow: hidden;
+}
+
+.ankara-premium-hero-showcase .ankara-hero-inner-content {
+	max-width: 800px;
+	animation: ankaraHeroFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+	z-index: 2;
+}
+
+.ankara-premium-hero-showcase .ankara-hero-eyebrow {
+	font-size: 1rem;
+	text-transform: uppercase;
+	letter-spacing: 4px;
+	color: #c98a3d; /* Ankara golden accent color */
+	font-weight: 700;
+	margin-bottom: 1rem;
+}
+
+.ankara-premium-hero-showcase .ankara-hero-title-main {
+	font-size: 3.5rem;
+	font-weight: 800;
+	color: #ffffff;
+	line-height: 1.15;
+	margin: 0 0 1.25rem 0;
+	letter-spacing: -1px;
+}
+
+.ankara-premium-hero-showcase .ankara-hero-description {
+	font-size: 1.15rem;
+	color: #e2e8f0;
+	line-height: 1.6;
+	max-width: 600px;
+	margin: 0 auto 2.5rem auto;
+}
+
+.ankara-premium-hero-showcase .ankara-hero-cta-action {
+	padding: 1rem 2.5rem;
+	font-size: 1rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	background-color: #c98a3d;
+	color: #ffffff;
+	border: none;
+	border-radius: 50px;
+	cursor: pointer;
+	box-shadow: 0 10px 20px rgba(201, 138, 61, 0.2);
+	transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ankara-premium-hero-showcase .ankara-hero-cta-action:hover {
+	background-color: #ffffff;
+	color: #1a1e25;
+	transform: translateY(-2px);
+	box-shadow: 0 12px 24px rgba(255, 255, 255, 0.25);
+}
+
+@keyframes ankaraHeroFadeUp {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* ==========================================================================
+   Super-Optimized Mobile Viewport Transformation (760px and Below)
+   ========================================================================== */
+@media (max-width: 760px) {
+	.ankara-premium-hero-showcase {
+		min-height: 75vh; /* Increased height to make the image feel majestic on mobile */
+		align-items: flex-end; /* Pushes content down to keep the face clear */
+		text-align: left; /* Editorial alignment style */
+		padding: 2rem 1.25rem;
+
+		/* Repositioned background image: pushes model slightly right, keeping her centered on screens */
+		background:
+			linear-gradient(
+				to top,
+				rgba(17, 15, 14, 0.95) 0%,
+				rgba(17, 15, 14, 0.6) 40%,
+				rgba(17, 15, 14, 0.1) 100%
+			),
+			url('/image/ank-hero.jpeg') no-repeat;
+		background-position: 68% center;
+		background-size: cover;
+	}
+
+	.ankara-premium-hero-showcase .ankara-hero-inner-content {
+		width: 100%;
+		max-width: 100%;
+		margin-bottom: 0.5rem;
+	}
+
+	.ankara-premium-hero-showcase .ankara-hero-eyebrow {
+		font-size: 0.8rem;
+		letter-spacing: 2px;
+		margin-bottom: 0.5rem;
+	}
+
+	.ankara-premium-hero-showcase .ankara-hero-title-main {
+		font-size: 2.1rem; /* Punchy font scale sizing for small viewports */
+		line-height: 1.2;
+		margin-bottom: 0.85rem;
+		font-weight: 800;
+		text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+	}
+
+	.ankara-premium-hero-showcase .ankara-hero-description {
+		font-size: 0.95rem;
+		max-width: 400px;
+		line-height: 1.5;
+		color: #cbd5e1;
+		margin: 0 0 1.75rem 0;
+		text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+		margin-top: 30px;
+		margin-bottom: 20px;
+	}
+
+	.ankara-premium-hero-showcase .ankara-hero-cta-action {
+		width: 100%; /* Full-width mobile hit target button */
+		padding: 1.1rem;
+		font-size: 0.95rem;
+		border-radius: 8px; /* Sleeker structure flag */
+		text-align: center;
+		box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+	}
+	.ankara-premium-hero-showcase .ankara-hero-title-main {
+		max-width: 300px;
+		font-size: 2.5rem;
+		font-weight: 800;
+		color: #ffffff;
+		line-height: 1.15;
+		margin: 0 0 1.25rem 0;
+		letter-spacing: -1px;
+		margin-top: 30px;
+		margin-bottom: 20px;
+	}
+}

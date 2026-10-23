@@ -1,0 +1,53 @@
+:root {
+	--bg: #fffaf5;
+	--panel: #ffffff;
+	--panel-soft: #f6f1ea;
+	--ink: #1e1a17;
+	--muted: #5f5b59;
+	--line: rgba(30, 26, 23, 0.08);
+	--primary: #d38406;
+	/* --primary: #b96d32; */
+	--primary-dark: #8f4d1e;
+	--secondary: #1d2328;
+	--gold: #d7b063;
+	--success: #2c8f58;
+	--danger: #cc3232;
+	--shadow: 0 20px 45px rgba(17, 19, 22, 0.12);
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	font-family: 'Poppins', 'Segoe UI', sans-serif;
+	background: var(--bg);
+	color: var(--ink);
+	line-height: 1.6;
+	overflow-x: hidden;
+}
+
+img {
+	display: block;
+	max-width: 100%;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+button,
+input {
+	font: inherit;
+}
+
+button {
+	cursor: pointer;
+}

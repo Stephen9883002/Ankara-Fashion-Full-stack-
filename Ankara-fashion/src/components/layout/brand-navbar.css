@@ -1,0 +1,446 @@
+.ankara-premium-cart-btn {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	background-color: rgba(255, 255, 255, 0.08);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	color: #ffffff;
+	padding: 0.55rem 1rem;
+	border-radius: 50px;
+	font-weight: 600;
+	font-size: 0.85rem;
+	cursor: pointer;
+	transition: all 0.25s ease;
+	z-index: 100000000;
+}
+
+.ankara-premium-cart-btn:hover {
+	background-color: #ffffff;
+	color: #1a1e25;
+	border-color: #ffffff;
+	transform: translateY(-1px);
+}
+
+.ankara-premium-cart-btn .material-icons-sharp {
+	font-size: 1.25rem;
+}
+
+/* Luxury Pill-Shaped Numeric Counter Badge */
+.ankara-cart-numeric-badge {
+	background-color: #c98a3d; /* Ankara premium gold tone background */
+	color: #ffffff;
+	font-size: 0.75rem;
+	font-weight: 700;
+	padding: 0.15rem 0.5rem;
+	border-radius: 50px;
+	min-width: 20px;
+	text-align: center;
+	transition: all 0.25s ease;
+}
+
+/* Hover inversion mechanics so the badge pops beautifully */
+.ankara-premium-cart-btn:hover .ankara-cart-numeric-badge {
+	background-color: #1a1e25;
+	color: #ffffff;
+}
+
+/* --- Mobile Responsive Rules for Cart Button --- */
+@media (max-width: 760px) {
+	.ankara-premium-cart-btn {
+		padding: 0.55rem; /* Shrinks container down slightly to fit on small mobile header rows */
+		border-radius: 50%;
+		width: 40px;
+		height: 40px;
+		justify-content: center;
+		position: relative;
+	}
+
+	.ankara-premium-cart-btn .cart-btn-label {
+		display: none; /* Safely hides the word "Cart" on smaller screens to prevent crowding */
+	}
+
+	/* Shifting counter position cleanly onto top corner on mobile screens */
+	.ankara-premium-cart-btn .ankara-cart-numeric-badge {
+		position: absolute;
+		top: -4px;
+		right: -4px;
+		padding: 0 4px;
+		min-width: 18px;
+		height: 18px;
+		font-size: 0.7rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border: 2px solid #1a1e25;
+	}
+}
+
+.ankara-brand-header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background-color: #1a1e25;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+	z-index: 99999;
+	font-family: inherit;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.ankara-nav-container {
+	max-width: 1300px;
+	margin: 0 auto;
+	padding: 0 1.5rem;
+	height: 100px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1.5rem;
+}
+
+/* --- Brand Logo Positioning Area --- */
+.ankara-logo-frame {
+	display: flex;
+	align-items: center;
+	flex-shrink: 0;
+}
+
+.ankara-logo-frame img {
+	height: 44px;
+	width: auto;
+	object-fit: contain;
+}
+
+/* --- Desktop Nav Links Core Block --- */
+.ankara-desktop-nav-links {
+	display: flex;
+	align-items: center;
+	gap: 1.75rem;
+}
+
+.ankara-desktop-nav-links a {
+	color: #e2e8f0;
+	text-decoration: none;
+	font-size: 0.95rem;
+	font-weight: 500;
+	letter-spacing: 0.3px;
+	transition: color 0.2s ease;
+	position: relative;
+	padding: 0.5rem 0;
+}
+
+.ankara-desktop-nav-links a:hover {
+	color: #c98a3d; /* Smooth Brand Ankara Gold Hue */
+}
+
+/* Modern underline hover transitions */
+.ankara-desktop-nav-links a::after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 2px;
+	background-color: #c98a3d;
+	transform: scaleX(0);
+	transition: transform 0.25s ease;
+	transform-origin: right;
+}
+
+.ankara-desktop-nav-links a:hover::after {
+	transform: scaleX(1);
+	transform-origin: left;
+}
+
+/* --- Search Engine Optimization Component --- */
+.ankara-search-wrapper {
+	display: flex;
+	align-items: center;
+	background: rgba(255, 255, 255, 0.07);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	border-radius: 50px;
+	padding: 0.25rem 0.5rem 0.25rem 1.25rem;
+	width: 100%;
+	max-width: 320px;
+	transition: all 0.3s ease;
+}
+
+.ankara-search-wrapper:focus-within {
+	background: #ffffff;
+	border-color: #c98a3d;
+	box-shadow: 0 0 0 3px rgba(201, 138, 61, 0.15);
+}
+
+.ankara-search-input {
+	width: 100%;
+	background: transparent;
+	border: none;
+	outline: none;
+	color: #ffffff;
+	font-size: 0.9rem;
+	padding: 0.5rem 0;
+}
+
+.ankara-search-input:focus {
+	color: #1a1e25;
+}
+
+.ankara-search-input::placeholder {
+	color: #a0aec0;
+}
+
+.ankara-search-wrapper:focus-within .ankara-search-input {
+	color: #1a1e25;
+}
+
+.ankara-search-action-btn {
+	background: transparent;
+	border: none;
+	color: #a0aec0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	padding: 0.5rem;
+	border-radius: 50%;
+	transition: color 0.2s;
+}
+
+.ankara-search-wrapper:focus-within .ankara-search-action-btn {
+	color: #1a1e25;
+}
+
+.ankara-search-action-btn:hover {
+	color: #c98a3d !important;
+}
+
+/* --- Action Controls Group Section --- */
+.ankara-action-cluster {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	flex-shrink: 0;
+}
+
+/* Universal Icon Button Outlines */
+.ankara-icon-action-trigger {
+	background: transparent;
+	border: none;
+	color: #ffffff;
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 42px;
+	height: 42px;
+	border-radius: 50%;
+	cursor: pointer;
+	transition:
+		background-color 0.25s,
+		color 0.25s;
+}
+
+.ankara-icon-action-trigger:hover {
+	background-color: rgba(255, 255, 255, 0.08);
+	color: #c98a3d;
+}
+
+.ankara-icon-action-trigger .material-icons-sharp {
+	font-size: 1.5rem;
+}
+
+/* Badge Counter Visual Alignment */
+.ankara-badge-indicator {
+	position: absolute;
+	top: 2px;
+	right: 2px;
+	background-color: #c98a3d;
+	color: #ffffff;
+	font-size: 0.7rem;
+	font-weight: 700;
+	min-width: 18px;
+	height: 18px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0 4px;
+	border: 2px solid #1a1e25;
+}
+
+/* Premium Account Dashboard Access Button style */
+.ankara-account-profile-btn {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	background-color: #c98a3d;
+	color: #ffffff;
+	border: none;
+	padding: 0.55rem 1.1rem;
+	border-radius: 50px;
+	font-weight: 600;
+	font-size: 0.85rem;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	box-shadow: 0 4px 10px rgba(201, 138, 61, 0.15);
+}
+
+.ankara-account-profile-btn:hover {
+	background-color: #b07530;
+	transform: translateY(-1px);
+}
+
+.ankara-account-greeting-span {
+	color: #a0aec0;
+	font-size: 0.85rem;
+	font-weight: 500;
+}
+
+/* Hidden Utility Tokens Default */
+.ankara-mobile-hamburger-trigger,
+.ankara-mobile-sidebar-drawer {
+	display: none;
+}
+
+/* ==========================================================================
+   Super Responsive Transformation Engine (1024px and Below)
+   ========================================================================== */
+@media (max-width: 1024px) {
+	.ankara-desktop-nav-links,
+	.ankara-account-greeting-span {
+		display: none !important; /* Safely turns off long text row allocations */
+	}
+
+	.ankara-nav-container {
+		height: 65px;
+		padding: 0 1rem;
+	}
+
+	/* Hamburger Toggle Display */
+	.ankara-mobile-hamburger-trigger {
+		display: flex;
+		background: transparent;
+		border: none;
+		color: #ffffff;
+		cursor: pointer;
+		padding: 0.5rem;
+	}
+
+	.ankara-mobile-hamburger-trigger .material-icons-sharp {
+		font-size: 1.75rem;
+	}
+
+	/* Center the search entry box cleanly between logo and actions */
+	.ankara-search-wrapper {
+		max-width: 220px;
+		padding-left: 0.85rem;
+	}
+
+	/* --- Full Screen Touch Side-Drawer Component --- */
+	.ankara-mobile-sidebar-drawer {
+		display: block;
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 280px;
+		height: 100vh;
+		background-color: #11141a;
+		z-index: 1000000; /* Layers right over sticky main header block space */
+		padding: 2rem 1.5rem;
+		box-shadow: 5px 0 25px rgba(0, 0, 0, 0.4);
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+
+		/* Elegant Slide Motion Mechanics */
+		transform: translateX(-100%);
+		transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+	}
+
+	/* Side Drawer Visibility Flag */
+	.ankara-mobile-sidebar-drawer.is-drawer-open {
+		transform: translateX(0);
+	}
+
+	/* Drawer Interior Links Architecture */
+	.ankara-drawer-links-stack {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+		margin-top: 1rem;
+	}
+
+	.ankara-drawer-links-stack a {
+		color: #f1f5f9;
+		text-decoration: none;
+		font-size: 1.2rem;
+		font-weight: 600;
+		padding: 0.5rem 0;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+		transition: color 0.2s;
+	}
+
+	.ankara-drawer-links-stack a:hover {
+		color: #c98a3d;
+	}
+
+	.ankara-drawer-dismiss-row {
+		display: flex;
+		justify-content: flex-end;
+		align-items: center;
+	}
+
+	.ankara-drawer-dismiss-btn {
+		background: transparent;
+		border: none;
+		color: #a0aec0;
+		cursor: pointer;
+	}
+
+	.ankara-drawer-dismiss-btn .material-icons-sharp {
+		font-size: 1.75rem;
+	}
+
+	.ankara-drawer-auth-footprint {
+		margin-top: auto;
+		padding-top: 1.5rem;
+		border-top: 1px solid rgba(255, 255, 255, 0.08);
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+
+	.ankara-drawer-auth-footprint .ankara-account-profile-btn {
+		width: 100%;
+		justify-content: center;
+		padding: 0.8rem;
+		font-size: 1rem;
+	}
+
+	.ankara-drawer-user-greeting {
+		color: #ffffff;
+		font-size: 1.1rem;
+		font-weight: 700;
+		margin-bottom: 0.5rem;
+		display: block;
+	}
+}
+
+@media (max-width: 480px) {
+	.ankara-search-wrapper {
+		display: none; /* Safely turns off search bar on extra small devices to prevent stacking breaks */
+	}
+}
+
+.cart,
+.cart-modal,
+.cart-sidebar,
+.cart-drawer,
+#cart-container {
+	z-index: 1000000 !important; /* Forces the drawer view right on top of the fixed header layer */
+}
+
+.cart-overlay,
+.cart-backdrop {
+	z-index: 999999 !important; /* Sits right between the navbar and the active cart drawer */
+}
