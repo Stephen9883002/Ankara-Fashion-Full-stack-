@@ -1,6 +1,6 @@
 import AdminOrdersTable from './AdminOrdersTable';
 import { useState, useEffect } from 'react';
-import { adminFetch } from './adminApi';
+import { adminFetch } from './AdminApi';
 
 function formatNaira(amount) {
 	return '₦' + amount.toLocaleString();

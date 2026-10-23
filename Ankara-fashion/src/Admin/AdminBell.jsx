@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { adminFetch } from './adminApi';
+import { adminFetch } from './AdminApi';
+
 import { useNavigate } from 'react-router-dom';
 import { statusLabel, formatNaira } from './adminUtils';
 

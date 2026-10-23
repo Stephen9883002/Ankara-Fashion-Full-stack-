@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { adminFetch } from './adminApi';
+import { adminFetch } from './AdminApi';
 import { formatDate } from './adminUtils';
 import AdminAddAdminForm from './AdminAddAdminForm';
 

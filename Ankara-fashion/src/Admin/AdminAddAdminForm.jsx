@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { adminFetch } from './adminApi';
+import { adminFetch } from './AdminApi';
 import PasswordField from '../components/modals/PasswordField';
 
 function AdminAddAdminForm(props) {

@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { adminFetch } from './adminApi';
+import { adminFetch } from './AdminApi';
 
 const STATUS_OPTIONS = [
 	'pending',

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { adminFetch } from './adminApi';
+import { adminFetch } from './AdminApi';
 
 function AdminOrderEditForm(props) {
 	const [fullName, setFullName] = useState(props.order.full_name || '');

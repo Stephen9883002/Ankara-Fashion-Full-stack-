@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { adminFetch } from './adminApi';
+import { adminFetch } from './AdminApi';
 import { statusLabel, formatNaira } from './adminUtils';
 
 function formatShort(amount) {

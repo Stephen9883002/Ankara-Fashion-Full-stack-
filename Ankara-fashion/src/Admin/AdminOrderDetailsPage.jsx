@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
-import { adminFetch } from './adminApi';
+import { adminFetch } from './AdminApi';
 import OrderInvoice from '../components/pages/OrderInvoice';
 import AdminOrderEditForm from './AdminOderEditForm';
 
