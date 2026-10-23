@@ -32,9 +32,13 @@ const initializeDatabase = async () => {
 				status_text VARCHAR(100),
 				status_class VARCHAR(100),
 				section VARCHAR(100),
-				category VARCHAR(100),
-        stock INT DEFAULT 10 
+				category VARCHAR(100)
 			);
+		`);
+
+		// 🔥 FORCE ADD STOCK COLUMN IF IT DOES NOT EXIST
+		await pool.query(`
+			ALTER TABLE products ADD COLUMN IF NOT EXISTS stock INT DEFAULT 10;
 		`);
 
 		// 2. Create Users Table
@@ -66,12 +70,63 @@ const initializeDatabase = async () => {
 		`);
 
 		console.log(
-			'✅ All database tables (products, users, orders) verified/created successfully!',
+			'✅ All database tables verified, altered, and created successfully!',
 		);
 	} catch (err) {
 		console.error('❌ Error automatically initializing database tables:', err);
 	}
 };
+
+try {
+	// 1. Create Products Table
+	await pool.query(`
+			CREATE TABLE IF NOT EXISTS products (
+				id SERIAL PRIMARY KEY,
+				title VARCHAR(255) NOT NULL,
+				price INT NOT NULL,
+				image TEXT,
+				status_text VARCHAR(100),
+				status_class VARCHAR(100),
+				section VARCHAR(100),
+				category VARCHAR(100),
+        stock INT DEFAULT 10 
+			);
+		`);
+
+	// 2. Create Users Table
+	await pool.query(`
+			CREATE TABLE IF NOT EXISTS users (
+				id SERIAL PRIMARY KEY,
+				full_name VARCHAR(255) NOT NULL,
+				email VARCHAR(255) UNIQUE NOT NULL,
+				password_hash VARCHAR(255) NOT NULL,
+				role VARCHAR(50) DEFAULT 'user'
+			);
+		`);
+
+	// 3. Create Orders Table
+	await pool.query(`
+			CREATE TABLE IF NOT EXISTS orders (
+				id SERIAL PRIMARY KEY,
+				full_name VARCHAR(255) NOT NULL,
+				email VARCHAR(255) NOT NULL,
+				phone VARCHAR(50) NOT NULL,
+				address TEXT NOT NULL,
+				items JSONB NOT NULL,
+				total INT NOT NULL,
+				payment_reference VARCHAR(255),
+				status VARCHAR(50) DEFAULT 'pending',
+				user_id INT REFERENCES users(id) ON DELETE SET NULL,
+				order_number VARCHAR(100) UNIQUE NOT NULL
+			);
+		`);
+
+	console.log(
+		'✅ All database tables (products, users, orders) verified/created successfully!',
+	);
+} catch (err) {
+	console.error('❌ Error automatically initializing database tables:', err);
+}
 
 // Automatically seed products if the table is completely empty
 const seedProductsIfEmpty = async () => {
