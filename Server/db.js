@@ -19,9 +19,10 @@ const pool = process.env.DATABASE_URL
 
 module.exports = pool;
 
-// Automatically create the products table if it doesn't exist
+// Automatically create all required tables if they don't exist
 const initializeDatabase = async () => {
 	try {
+		// 1. Create Products Table
 		await pool.query(`
 			CREATE TABLE IF NOT EXISTS products (
 				id SERIAL PRIMARY KEY,
@@ -34,9 +35,40 @@ const initializeDatabase = async () => {
 				category VARCHAR(100)
 			);
 		`);
-		console.log('✅ Products table checked/created successfully!');
+
+		// 2. Create Users Table
+		await pool.query(`
+			CREATE TABLE IF NOT EXISTS users (
+				id SERIAL PRIMARY KEY,
+				full_name VARCHAR(255) NOT NULL,
+				email VARCHAR(255) UNIQUE NOT NULL,
+				password_hash VARCHAR(255) NOT NULL,
+				role VARCHAR(50) DEFAULT 'user'
+			);
+		`);
+
+		// 3. Create Orders Table
+		await pool.query(`
+			CREATE TABLE IF NOT EXISTS orders (
+				id SERIAL PRIMARY KEY,
+				full_name VARCHAR(255) NOT NULL,
+				email VARCHAR(255) NOT NULL,
+				phone VARCHAR(50) NOT NULL,
+				address TEXT NOT NULL,
+				items JSONB NOT NULL,
+				total INT NOT NULL,
+				payment_reference VARCHAR(255),
+				status VARCHAR(50) DEFAULT 'pending',
+				user_id INT REFERENCES users(id) ON DELETE SET NULL,
+				order_number VARCHAR(100) UNIQUE NOT NULL
+			);
+		`);
+
+		console.log(
+			'✅ All database tables (products, users, orders) verified/created successfully!',
+		);
 	} catch (err) {
-		console.error('❌ Error automatically initializing database table:', err);
+		console.error('❌ Error automatically initializing database tables:', err);
 	}
 };
 
@@ -47,7 +79,6 @@ const seedProductsIfEmpty = async () => {
 		if (parseInt(res.rows[0].count, 10) === 0) {
 			console.log('🚚 Products table is empty. Starting automatic seeding...');
 
-			// Load your local products array
 			const rawProducts = require('./rawProducts.js');
 			const products = Array.isArray(rawProducts)
 				? rawProducts
