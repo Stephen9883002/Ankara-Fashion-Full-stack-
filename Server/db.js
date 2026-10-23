@@ -40,47 +40,47 @@ const initializeDatabase = async () => {
 	}
 };
 
-initializeDatabase();
-require('dotenv').config();
-const { Pool } = require('pg');
-
-// Setup connection based on environment (Render vs Local Laptop)
-const pool = process.env.DATABASE_URL
-	? new Pool({
-			connectionString: process.env.DATABASE_URL,
-			ssl: {
-				rejectUnauthorized: false,
-			},
-		})
-	: new Pool({
-			user: process.env.DB_USER,
-			host: process.env.DB_HOST,
-			database: process.env.DB_NAME,
-			password: process.env.DB_PASSWORD,
-			port: process.env.DB_PORT,
-		});
-
-module.exports = pool;
-
-// Automatically create the products table if it doesn't exist
-const initializeDatabase = async () => {
+// Automatically seed products if the table is completely empty
+const seedProductsIfEmpty = async () => {
 	try {
-		await pool.query(`
-			CREATE TABLE IF NOT EXISTS products (
-				id SERIAL PRIMARY KEY,
-				title VARCHAR(255) NOT NULL,
-				price INT NOT NULL,
-				image TEXT,
-				status_text VARCHAR(100),
-				status_class VARCHAR(100),
-				section VARCHAR(100),
-				category VARCHAR(100)
+		const res = await pool.query('SELECT COUNT(*) FROM products');
+		if (parseInt(res.rows[0].count, 10) === 0) {
+			console.log('🚚 Products table is empty. Starting automatic seeding...');
+
+			// Load your local products array
+			const rawProducts = require('./rawProducts.js');
+			const products = Array.isArray(rawProducts)
+				? rawProducts
+				: rawProducts.default || rawProducts.products || [];
+
+			for (const p of products) {
+				await pool.query(
+					`INSERT INTO products (title, price, image, status_text, status_class, section, category) 
+					 VALUES ($1, $2, $3, $4, $5, $6, $7)`,
+					[
+						p.title,
+						parseInt(String(p.price).replace(/[^\d]/g, ''), 10) || 0,
+						p.image,
+						p.statusText,
+						p.statusClass,
+						p.section,
+						p.category,
+					],
+				);
+			}
+			console.log(
+				`✨ Successfully seeded ${products.length} products into the live database!`,
 			);
-		`);
-		console.log('✅ Products table checked/created successfully!');
+		}
 	} catch (err) {
-		console.error('❌ Error automatically initializing database table:', err);
+		console.error('❌ Seeding failed:', err);
 	}
 };
 
-initializeDatabase();
+// Run setup steps in order
+const startSetup = async () => {
+	await initializeDatabase();
+	await seedProductsIfEmpty();
+};
+
+startSetup();
