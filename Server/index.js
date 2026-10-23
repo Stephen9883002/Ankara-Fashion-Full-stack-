@@ -1,16 +1,17 @@
-const pool = require('./db');
 const express = require('express');
+const app = express();
+
+// Now app is initialized first, so this line will run smoothly!
 app.set('trust proxy', 1);
+
+const pool = require('./db'); // 👈 Your pool import is safely right here!
 const cors = require('cors');
 const axios = require('axios');
-
 const bcrypt = require('bcryptjs');
 const DUMMY_HASH = bcrypt.hashSync('not-a-real-password', 10);
 const jwt = require('jsonwebtoken');
-
-const app = express();
-
 const crypto = require('crypto');
+
 const {
 	trackLimiter,
 	loginLimiter,

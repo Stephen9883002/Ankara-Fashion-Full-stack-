@@ -36,7 +36,7 @@ const initializeDatabase = async () => {
 			);
 		`);
 
-		// 🔥 FORCE ADD STOCK COLUMN IF IT DOES NOT EXIST
+		// FORCE ADD STOCK COLUMN IF IT DOES NOT EXIST
 		await pool.query(`
 			ALTER TABLE products ADD COLUMN IF NOT EXISTS stock INT DEFAULT 10;
 		`);
@@ -77,57 +77,6 @@ const initializeDatabase = async () => {
 	}
 };
 
-try {
-	// 1. Create Products Table
-	await pool.query(`
-			CREATE TABLE IF NOT EXISTS products (
-				id SERIAL PRIMARY KEY,
-				title VARCHAR(255) NOT NULL,
-				price INT NOT NULL,
-				image TEXT,
-				status_text VARCHAR(100),
-				status_class VARCHAR(100),
-				section VARCHAR(100),
-				category VARCHAR(100),
-        stock INT DEFAULT 10 
-			);
-		`);
-
-	// 2. Create Users Table
-	await pool.query(`
-			CREATE TABLE IF NOT EXISTS users (
-				id SERIAL PRIMARY KEY,
-				full_name VARCHAR(255) NOT NULL,
-				email VARCHAR(255) UNIQUE NOT NULL,
-				password_hash VARCHAR(255) NOT NULL,
-				role VARCHAR(50) DEFAULT 'user'
-			);
-		`);
-
-	// 3. Create Orders Table
-	await pool.query(`
-			CREATE TABLE IF NOT EXISTS orders (
-				id SERIAL PRIMARY KEY,
-				full_name VARCHAR(255) NOT NULL,
-				email VARCHAR(255) NOT NULL,
-				phone VARCHAR(50) NOT NULL,
-				address TEXT NOT NULL,
-				items JSONB NOT NULL,
-				total INT NOT NULL,
-				payment_reference VARCHAR(255),
-				status VARCHAR(50) DEFAULT 'pending',
-				user_id INT REFERENCES users(id) ON DELETE SET NULL,
-				order_number VARCHAR(100) UNIQUE NOT NULL
-			);
-		`);
-
-	console.log(
-		'✅ All database tables (products, users, orders) verified/created successfully!',
-	);
-} catch (err) {
-	console.error('❌ Error automatically initializing database tables:', err);
-}
-
 // Automatically seed products if the table is completely empty
 const seedProductsIfEmpty = async () => {
 	try {
@@ -142,8 +91,8 @@ const seedProductsIfEmpty = async () => {
 
 			for (const p of products) {
 				await pool.query(
-					`INSERT INTO products (title, price, image, status_text, status_class, section, category) 
-					 VALUES ($1, $2, $3, $4, $5, $6, $7)`,
+					`INSERT INTO products (title, price, image, status_text, status_class, section, category, stock) 
+					 VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`,
 					[
 						p.title,
 						parseInt(String(p.price).replace(/[^\d]/g, ''), 10) || 0,
@@ -152,6 +101,7 @@ const seedProductsIfEmpty = async () => {
 						p.statusClass,
 						p.section,
 						p.category,
+						10, // Sets default stock inventory to 10 items
 					],
 				);
 			}
